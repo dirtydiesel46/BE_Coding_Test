@@ -1,7 +1,7 @@
 import re
 
 def main():
-    # Read the file
+    # Read the file "sampleInput.txt"
     with open("sampleInput.txt") as f:
         teams = f.read()
     f.close()
@@ -65,7 +65,7 @@ def main():
         else:
             teams[team2name][1] += team2points
 
-    # sort the dictionary by points, then print the teams in order of points
+    # sort the dictionary by points, then write the teams line per line in order of points to the output.txt file
     sortedteams = sorted(teams.items(), key=lambda x: x[1][1], reverse=True)
     with open("output.txt", "w") as f:
         for team in sortedteams:
