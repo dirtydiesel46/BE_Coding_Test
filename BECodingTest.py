@@ -1,5 +1,6 @@
 import re
 
+
 def main():
     # Read the file "sampleInput.txt"
     with open("sampleInput.txt") as f:
@@ -44,34 +45,53 @@ def main():
 
         # rules to be followed for points, win == 3, tie == 1, loss == 0
         if team1score > team2score:
-            print(team1name, "wins!")
+            # print(team1name, "wins!")
             team1points += 3
         elif team1score < team2score:
-            print(team2name, "wins!")
+            # print(team2name, "wins!")
             team2points += 3
         else:
-            print("It's a tie!")
+            # print("It's a tie!")
             team1points += 1
             team2points += 1
 
         # add the points to the dictionary, check if team exists in dictionary first, if not add
-        # - else , add points to team in dictionary
+        # - else , add points to team in dictionary teams
         if team1name not in teams:
-            teams[team1name] = [team1name, team1points]
+            teams[team1name] = team1points
         else:
-            teams[team1name][1] += team1points
+            teams[team1name] += team1points
         if team2name not in teams:
-            teams[team2name] = [team2name, team2points]
+            teams[team2name] = team2points
         else:
-            teams[team2name][1] += team2points
+            teams[team2name] += team2points
 
     # sort the dictionary by points, then write the teams line per line in order of points to the output.txt file
-    sortedteams = sorted(teams.items(), key=lambda x: x[1][1], reverse=True)
+    sortedTeams = sorted(teams.items(), key=lambda x: (-x[1], x[0]))
+    # create dictionary teamPoints for storing team point data for comparison
+    teamPoints = {}
+    counter = 1
     with open("output.txt", "w") as f:
-        for team in sortedteams:
-            team = team[0] + "".join(", ") + str(team[1][1]) + " pts"
-            f.write(team)
-            f.write("\n")
-        f.close()
+        for team in sortedTeams:
+            # Check if the teamPoints contains less than 2 entries,
+            # then add to teamPoints rather than compare out of index
+            pointOrPoints = "pts"
+            if (team[1]) == 1:
+                pointOrPoints = "pt"
+            if len(teamPoints) < 2:
+                teamPoints[counter] = team[1]
+                f.write(str(counter) + ".\t" + str(team[0]) + "".join(", ") + str(team[1]) + " " + pointOrPoints + "\n")
+            else:
+                teamPoints[counter] = team[1]
+                if team[1] == teamPoints[counter - 1]:
+                    if (team[1]) == 1:
+                        f.write(str(counter - 1) + ".\t" + str(team[0]) + "".join(", ") + str(
+                            team[1]) + " " + pointOrPoints + "\n")
+                else:
+                    f.write(
+                        str(counter) + ".\t" + str(team[0]) + "".join(", ") + str(team[1]) + " " + pointOrPoints + "\n")
+            counter += 1
+    f.close()
+
 
 main()
