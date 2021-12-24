@@ -1,10 +1,13 @@
 <h1 align="center">Welcome to BE Coding Test - League Table Ranking Calculator 👋</h1>
 <p>
+  <a href="https://github.com/dirtydiesel46/BE_Coding_Test#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
 </p>
 
-> A production ready, maintainable, testable command-line application that will calculate the ranking table for a league - written in Python because of it's ease of use :) 
+> A production ready, maintainable, testable command-line application that will calculate the ranking table for a league - written in Python because of it's ease of use :)
 
-### 🏠 [Homepage](https://github.com/dirtydiesel46/BE_Coding_Test)
+### 🏠 [Homepage](https://github.com/dirtydiesel46/BE_Coding_Test#readme)
 
 ## Usage
 
